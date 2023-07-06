@@ -34,6 +34,11 @@ export default function Home() {
           </ActionButton>
 
         </ActionButtons>
+
+        <InputButton>
+        Where to?
+        </InputButton>
+
       </ActionItems>
     </Wrapper>
   )
@@ -72,6 +77,7 @@ h-8
 `
 const ActionButtons=tw.div`
 flex
+m-2
 
 `
 const ActionButton=tw.div`
@@ -79,7 +85,7 @@ flex
 bg-gray-200
 flex-1
 m-1
-h-32
+h-40
 shadow-xl
 items-center
 flex-col
@@ -90,5 +96,15 @@ transition-colors
 duration-700
 `
 const ActionButtonImage=tw.img`
-h-3/5
+h-4/5
+`
+const InputButton=tw.div`
+h-20 
+bg-gray-200
+shadow-xl
+transition-colors
+text-2xl
+p-4
+flex items-center
+mt-4
 `
