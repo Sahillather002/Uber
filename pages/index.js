@@ -25,7 +25,7 @@ export default function Home() {
             Ride
           </ActionButton>
           </Link>
-          
+
           <ActionButton>
           <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png"/>
             Wheels
@@ -102,7 +102,7 @@ const ActionButtonImage=tw.img`
 h-4/5
 `
 const InputButton=tw.div`
-h-20 
+h-16
 bg-gray-200
 shadow-xl
 transition-colors
@@ -110,4 +110,5 @@ text-2xl
 p-4
 flex items-center
 mt-4
+rounded-2xl
 `
