@@ -1,11 +1,13 @@
 import React from 'react'
 import tw from "tailwind-styled-components"
-
+import Link from 'next/link'
 const search = () => {
   return (
     <Wrapper>
         <ButtonContainer>
+            {/* <Link href='/index'> */}
             <BackButton src="https://icon-library.com/images/arrow-button-icon/arrow-button-icon-8.jpg"/>
+            {/* </Link> */}
         </ButtonContainer>
 
         <InputContainer>
@@ -22,6 +24,11 @@ const search = () => {
 
         <PlusIcon src="https://img.icons8.com/?size=512&id=3220&format=png"/>
         </InputContainer>
+
+        <SavedPlaces>
+            <StarIcon src="https://img.icons8.com/?size=512&id=44053&format=png"/>
+            SavedPlaces
+        </SavedPlaces>
     </Wrapper>
   )
 }
@@ -36,11 +43,11 @@ h-screen
 const ButtonContainer=tw.div`
 h-12
 bg-white
-px-4
-
+px-2
+py-2
 `
 const BackButton=tw.img`
-h-12
+h-10
 `
 const InputContainer=tw.div`
 bg-white
@@ -85,4 +92,17 @@ bg-gray-200
 rounded
 ml-3
 
+`
+const SavedPlaces=tw.div`
+flex
+items-center
+bg-white
+px-2
+py-2
+`
+const StarIcon=tw.img`
+h-12
+w-12
+p-2
+mr-2
 `
