@@ -1,11 +1,13 @@
 import tw from "tailwind-styled-components"
-import mapboxgl from "mapbox-gl"
 import Map from "./components/Map"
+import Link from "next/link"
+
 
 export default function Home() {
   return (
     <Wrapper>
       <Map/>
+
       <ActionItems>
         <Header>
           <UberLogo src="https://links.papareact.com/gzs"/>
@@ -17,12 +19,13 @@ export default function Home() {
         </Header>
 
         <ActionButtons>
-
+          <Link href="/search">
           <ActionButton>
           <ActionButtonImage src="https://links.papareact.com/3pn"/>
             Ride
           </ActionButton>
-
+          </Link>
+          
           <ActionButton>
           <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png"/>
             Wheels
