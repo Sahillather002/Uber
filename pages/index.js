@@ -15,6 +15,25 @@ export default function Home() {
           <UserImage src="https://avatars.githubusercontent.com/u/72077931?v=4"/>
         </Profile>
         </Header>
+
+        <ActionButtons>
+
+          <ActionButton>
+          <ActionButtonImage src="https://links.papareact.com/3pn"/>
+            Ride
+          </ActionButton>
+
+          <ActionButton>
+          <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png"/>
+            Wheels
+          </ActionButton>
+
+          <ActionButton>
+          <ActionButtonImage src="https://i.ibb.co/5RjchBg/uberschedule.png"/>
+            Reserve
+          </ActionButton>
+
+        </ActionButtons>
       </ActionItems>
     </Wrapper>
   )
@@ -50,4 +69,26 @@ shadow-xl
 `
 const UberLogo=tw.img`
 h-8
+`
+const ActionButtons=tw.div`
+flex
+
+`
+const ActionButton=tw.div`
+flex
+bg-gray-200
+flex-1
+m-1
+h-32
+shadow-xl
+items-center
+flex-col
+justify center
+rounded-lg transform
+hover:scale-105
+transition-colors
+duration-700
+`
+const ActionButtonImage=tw.img`
+h-3/5
 `
