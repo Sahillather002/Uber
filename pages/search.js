@@ -5,9 +5,9 @@ const search = () => {
   return (
     <Wrapper>
         <ButtonContainer>
-            {/* <Link href='/index'> */}
+            <Link href='/'>
             <BackButton src="https://icon-library.com/images/arrow-button-icon/arrow-button-icon-8.jpg"/>
-            {/* </Link> */}
+            </Link>
         </ButtonContainer>
 
         <InputContainer>
@@ -29,6 +29,10 @@ const search = () => {
             <StarIcon src="https://img.icons8.com/?size=512&id=44053&format=png"/>
             SavedPlaces
         </SavedPlaces>
+
+        <ConfirmButton>
+          Confirm Locations
+        </ConfirmButton>
     </Wrapper>
   )
 }
@@ -48,6 +52,7 @@ py-2
 `
 const BackButton=tw.img`
 h-10
+cursor-pointer
 `
 const InputContainer=tw.div`
 bg-white
@@ -105,4 +110,13 @@ h-12
 w-12
 p-2
 mr-2
+`
+const ConfirmButton=tw.div`
+bg-black
+text-white
+text-center
+m-2
+p-2
+cursor-pointer
+
 `
