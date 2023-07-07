@@ -79,22 +79,50 @@ const confirm = () => {
     //   fetchData();
     // },[])
   //------------------------------------------------------------------------------
-  const callAPI = async () => {
+  
+  const[pickupCoordinates,setPickupCoordinates]=useState()
+  const[dropoffCoordinates,setDropoffCoordinates]=useState()
+  
+  const getPickupCoordinates = async () => {
+    const pickup="Delhi";
     try {
         const res = await fetch(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
             {
                 method: 'GET',
+                limit: 1
             }
         );
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
+        // console.log(data.features[0].center)
+        setPickupCoordinates(data.features[0].center)
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const getDropoffCoordinates = async () => {
+    const dropoff="Kota";
+    try {
+        const res = await fetch(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
+            {
+                method: 'GET',
+                limit: 1
+            }
+        );
+        const data = await res.json();
+        // console.log(data);
+        // console.log(data.features[0].center)
+        setDropoffCoordinates(data.features[0].center)
     } catch (err) {
         console.log(err);
     }
 };
 useEffect(()=>{
-    callAPI();
+    getPickupCoordinates();
+    getDropoffCoordinates();
 },[])
   
     return (
@@ -103,8 +131,8 @@ useEffect(()=>{
         <RideContainer>
             Ride Selector
             confirm button
-            {/* {pickupCoordinates}
-            {dropoffCoordinates} */}
+            {pickupCoordinates}
+            {dropoffCoordinates}
         </RideContainer>
     </Wrapper>
   )

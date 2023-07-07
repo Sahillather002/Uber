@@ -11,8 +11,8 @@ const Map = () => {
     useEffect(() => {
         const map= new mapboxgl.Map({
           container:"map",
-          style: 'mapbox://styles/mapbox/dark-v11',
-          center: [78.7041,22.1025],
+          style: 'mapbox://styles/mapbox/streets-v12',
+          center: [77.2090057, 28.6138954],
           zoom: 4
         });
 
@@ -25,7 +25,7 @@ const Map = () => {
           .addTo(map);
       }
 
-      
+
   return <Wrapper id='map'>
 
   </Wrapper>
