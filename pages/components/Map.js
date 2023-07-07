@@ -6,8 +6,10 @@ import { useEffect } from 'react'
 mapboxgl.accessToken=
 'pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w'
 
-const Map = () => {
-
+//we use props for the data that is comming from confirm page
+//of 2 coordinates to put pointers inside our map
+const Map = (props) => {
+    // console.log(props)
     useEffect(() => {
         const map= new mapboxgl.Map({
           container:"map",
@@ -16,15 +18,30 @@ const Map = () => {
           zoom: 4
         });
 
-        addToMap(map)
-      });
+        if(props.pickupCoordinates){
+          addToMap(map,props.pickupCoordinates)
+        }
 
-      const addToMap=(map)=>{
+        if(props.dropoffCoordinates){
+          addToMap(map,props.dropoffCoordinates)
+        }
+
+        if(props.pickupCoordinates && props.dropoffCoordinates){
+          map.fitBounds([
+            props.dropoffCoordinates,
+            props.pickupCoordinates
+          ],{
+            padding:60
+          })
+        }
+      },[props.pickupCoordinates,props.dropoffCoordinates]);
+
+      
+      const addToMap=(map,coordinates)=>{
         const marker1=new mapboxgl.Marker()
-          .setLngLat([76.7041,28.1025])
+          .setLngLat(coordinates)
           .addTo(map);
       }
-
 
   return <Wrapper id='map'>
 

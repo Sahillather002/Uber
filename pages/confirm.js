@@ -103,7 +103,7 @@ const confirm = () => {
 };
 
 const getDropoffCoordinates = async () => {
-    const dropoff="Kota";
+    const dropoff="Hyderabad";
     try {
         const res = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
@@ -127,12 +127,17 @@ useEffect(()=>{
   
     return (
     <Wrapper>
-        <Map/>
+        <Map
+        //passing both coordinates to the map
+        //for pointing the arrow
+        pickupCoordinates={pickupCoordinates}
+        dropoffCoordinates={dropoffCoordinates}
+        
+        
+        />
         <RideContainer>
             Ride Selector
             confirm button
-            {pickupCoordinates}
-            {dropoffCoordinates}
         </RideContainer>
     </Wrapper>
   )
