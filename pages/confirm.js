@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 import Map from './components/Map'
+import { useRouter } from 'next/router'
 const confirm = () => {
+
+    const router = useRouter()
+    //router is used to get query data brrrr....
+    const{pickup,dropoff}=router.query
+    console.log("pickup",pickup)
+    console.log("dropoff",dropoff)
 
     // const[pickupCoordinates,setPickupCoordinates]=useState()
     // const[dropoffCoordinates,setDropoffCoordinates]=useState()
@@ -83,8 +90,8 @@ const confirm = () => {
   const[pickupCoordinates,setPickupCoordinates]=useState()
   const[dropoffCoordinates,setDropoffCoordinates]=useState()
   
-  const getPickupCoordinates = async () => {
-    const pickup="Delhi";
+  const getPickupCoordinates = async (pickup) => {
+    // const pickup="Delhi";
     try {
         const res = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
@@ -102,8 +109,8 @@ const confirm = () => {
     }
 };
 
-const getDropoffCoordinates = async () => {
-    const dropoff="Hyderabad";
+const getDropoffCoordinates = async (dropoff) => {
+    // const dropoff="Hyderabad";
     try {
         const res = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`,
@@ -121,9 +128,9 @@ const getDropoffCoordinates = async () => {
     }
 };
 useEffect(()=>{
-    getPickupCoordinates();
-    getDropoffCoordinates();
-},[])
+    getPickupCoordinates(pickup);
+    getDropoffCoordinates(dropoff);
+},[pickup,dropoff])
   
     return (
     <Wrapper>
