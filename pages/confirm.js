@@ -3,6 +3,8 @@ import tw from "tailwind-styled-components"
 import Map from './components/Map'
 import { useRouter } from 'next/router'
 import RideSelector from './components/RideSelector'
+import Link from 'next/link'
+
 const confirm = () => {
 
     const router = useRouter()
@@ -135,6 +137,11 @@ useEffect(()=>{
   
     return (
     <Wrapper>
+        <ButtonContainer>
+            <Link href='/search'>
+            <BackButton src="https://img.icons8.com/?size=512&id=81808&format=png"/>
+            </Link>
+        </ButtonContainer>
         <Map
         //passing both coordinates to the map
         //for pointing the arrow
@@ -181,4 +188,18 @@ mx-4
 py-4
 text-center
 text-xl
+`
+const ButtonContainer=tw.div`
+rounded-full 
+absolute
+top-4
+left-4
+z-10
+bg-white
+shadow-md
+cursor-pointer
+`
+const BackButton=tw.img`
+h-8
+object-contain
 `
