@@ -88,8 +88,8 @@ const confirm = () => {
     // },[])
   //------------------------------------------------------------------------------
   
-  const[pickupCoordinates,setPickupCoordinates]=useState()
-  const[dropoffCoordinates,setDropoffCoordinates]=useState()
+  const[pickupCoordinates,setPickupCoordinates]=useState([10,10])
+  const[dropoffCoordinates,setDropoffCoordinates]=useState([20,20])
   
   const getPickupCoordinates = async (pickup) => {
     // const pickup="Delhi";
@@ -141,10 +141,12 @@ useEffect(()=>{
         pickupCoordinates={pickupCoordinates}
         dropoffCoordinates={dropoffCoordinates}
         
-        
         />
         <RideContainer>
-               <RideSelector/>
+               <RideSelector
+               pickupCoordinates={pickupCoordinates}
+               dropoffCoordinates={dropoffCoordinates}
+               />
             <ConfirmButtonContainer>
             <ConfirmButton>
                 Confirm UberX

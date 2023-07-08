@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 import { carList } from '../data/carList'
-const RideSelector = () => {
+const RideSelector = ({pickupCoordinates,dropoffCoordinates}) => {
   
   const [rideDuration,setrideDuration]=useState(0)
   //getting ride duration from mapbox api
   useEffect(()=>{
-    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[0]};${dropoffCoordinates[0]},${dropoffCoordinates}`)
-  },[])
+    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[0]};${dropoffCoordinates[0]},${dropoffCoordinates}?access_token=pk.eyJ1Ijoic2FoaWwwMDIiLCJhIjoiY2xqcHFnbjVjMDF5NTNscWlyMmVzYzY1eiJ9.IbTLWNhg82wVbnnwXosZ9w`
+    )
+      .then(res=>res.json())
+      .then(data=>{
+        if(data.routes[0]!==undefined && data.routes[0].duration!==undefined)
+        setrideDuration(data.routes[0].duration/1000)
+        console.log(data)
+      })
+    
+  },[pickupCoordinates,dropoffCoordinates])
   return (
     <Wrapper>
         <Title>
@@ -30,7 +38,7 @@ const RideSelector = () => {
                     <Service>UberX</Service>
                     <Time>5 min away</Time>
                 </CarDetails>
-                <Price>$20.00</Price>
+                <Price>{'$'+(rideDuration*1).toFixed(2)}</Price>
             </Car> 
 
             <Car>
@@ -39,7 +47,7 @@ const RideSelector = () => {
                     <Service>UberXL</Service>
                     <Time>5 min away</Time>
                 </CarDetails>
-                <Price>$20.00</Price>
+                <Price>{'$'+(rideDuration*1.5).toFixed(2)}</Price>
             </Car>
 
             <Car>
@@ -48,7 +56,7 @@ const RideSelector = () => {
                     <Service>Black</Service>
                     <Time>5 min away</Time>
                 </CarDetails>
-                <Price>$20.00</Price>
+                <Price>{'$'+(rideDuration*2).toFixed(2)}</Price>
             </Car>
 
             <Car>
@@ -57,7 +65,7 @@ const RideSelector = () => {
                     <Service>Comfort</Service>
                     <Time>5 min away</Time>
                 </CarDetails>
-                <Price>$20.00</Price>
+                <Price>{'$'+(rideDuration*1.2).toFixed(2)}</Price>
             </Car>
 
             <Car>
@@ -66,7 +74,7 @@ const RideSelector = () => {
                     <Service>Black SUV</Service>
                     <Time>5 min away</Time>
                 </CarDetails>
-                <Price>$20.00</Price>
+                <Price>{'$'+(rideDuration*2.8).toFixed(2)}</Price>
             </Car>
 
         </CarList>
