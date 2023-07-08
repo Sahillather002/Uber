@@ -1,9 +1,32 @@
 import tw from "tailwind-styled-components"
 import Map from "./components/Map"
 import Link from "next/link"
-
+import {auth} from '../firebase'
+import { onAuthStateChanged,signOut } from "firebase/auth"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  
+  const [user,setUser]=useState()
+  const router=useRouter()
+
+  useEffect(()=>{
+    return onAuthStateChanged(auth,user=>{
+      if(user){
+        setUser({
+          name:user.displayName,
+          photoUrl:user.photoURL,
+          
+        })
+      }
+      else{
+        setUser(null)
+        router.push('/login')
+      }
+    })
+  },[])
+  
   return (
     <Wrapper>
       <Map/>
@@ -13,8 +36,11 @@ export default function Home() {
           <UberLogo src="https://links.papareact.com/gzs"/>
         
         <Profile>
-          <Name>Sahil</Name>
-          <UserImage src="https://avatars.githubusercontent.com/u/72077931?v=4"/>
+          <Name>{user && user.name}</Name>
+          <UserImage 
+          src={user && user.photoURL}
+          onClick={()=>signOut(auth)}
+          />
         </Profile>
         </Header>
 
@@ -74,6 +100,7 @@ border border-gray-200
 transition-transform	
 rounded
 shadow-xl
+cursor-pointer
 `
 const UberLogo=tw.img`
 h-8
