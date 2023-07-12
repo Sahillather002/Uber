@@ -14,6 +14,7 @@ export default function Home() {
             console.log(err);
         }
     };
+    
     return (
         <div className={styles.container}>
             <main className={styles.main}>
